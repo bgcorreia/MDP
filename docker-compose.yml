@@ -1,0 +1,30 @@
+version: "3.4"
+
+services:
+
+    nginx_mdp:
+        build: ./nginx
+        container_name: mdp_nginx
+        restart: always
+        ports:
+            - "80:80"
+        volumes:
+            - ./files:/var/www/html
+        networks:
+            - nginx
+            - back
+
+    php_mdp:
+        build: ./php
+        container_name: mdp_php
+        restart: always
+        volumes:
+            - ./files:/var/www/html
+        depends_on:
+             - nginx_mdp
+        networks:
+             - back
+
+networks:
+    nginx:
+    back:

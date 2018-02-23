@@ -10,6 +10,8 @@ services:
             - "80:80"
         volumes:
             - ./files:/var/www/html
+        depends_on:
+             - php_mdp
         networks:
             - nginx
             - back
@@ -20,8 +22,6 @@ services:
         restart: always
         volumes:
             - ./files:/var/www/html
-        depends_on:
-             - nginx_mdp
         networks:
              - back
 

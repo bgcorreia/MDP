@@ -1,4 +1,4 @@
-$('body').on('submit', '#formUpload', function(e){
+$('#formUpload').submit(function(e){
 	e.preventDefault();
 	var formData = new FormData($(this)[0]);
 	$.ajax({
@@ -8,6 +8,7 @@ $('body').on('submit', '#formUpload', function(e){
 		contentType: false,
 		data: formData,
 		success: function(data){
+			console.info(data);
 			if (data.error) {
 				console.info(data.error);
 
@@ -43,6 +44,13 @@ $('body').on('submit', '#formUpload', function(e){
 			}
 		}
 	});
+});
+
+$(document).ready(function(){
+	$("#loading").hide();
+    $("#creatPlot").click(function(){
+        $("#loading").show();
+    });
 });
 
 $('input[type=file]').change(function(){

@@ -20,12 +20,7 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav">
-						<li class="nav-item">
-							<a class="btn btn-outline-primary" href="about.html">About</a>
-						</li>
-						<li class="nav-item">
-							<a class="btn btn-outline-primary" href="tutorial.html">Tutorial</a>
-						</li>									      
+						<?php include "pages/navbar.php" ?>								      
 					</ul>
 				</div>
 
@@ -40,16 +35,14 @@
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur numquam reiciendis odio accusantium voluptatem minus iste ratione, quod, maxime excepturi debitis dicta sint sed omnis fugit laudantium rem ad non!</p>
 			</div>
 			<div id="baseButtons">
-				<a href="index.php" class="buttonsCreate"><i class="fa fa-list-alt" aria-hidden="true"></i> Run (All genes)</a>
- 				<div class="separate"></div>
-				<a href="pathways.php" class="buttonsCreate"><i class="fa fa-list-alt" aria-hidden="true"></i> Run (Pathways)</a>
+				<?php include "pages/buttons.php" ?>
 			</div>
 			<div id="forms">
 				<div class="alert alert-primary" role="alert">
 	  				To show all plots you have to <b>upload</b> the input files
 				</div>
 
-				<form enctype="multipart/form-data" id="formUpload" method="_POST">	
+				<form enctype="multipart/form-data" id="formUpload">	
 
 					<?php $GLOBALS['DIR_RANDOM'] = md5(date('Y-m-d H:i:s.') . gettimeofday()['usec']) ; ?>
 					<input type="hidden" name="exec" value="<?php echo $DIR_RANDOM ?>">
@@ -63,7 +56,7 @@
 					<div class="form-group">
 						<label for="expressionData">Expression Data</label>
 						<div class="baseFile">
-							<input type="file" name="expressionData" class="form-control-file" id="expressionData" accept="text/csv,text/tab-separated-values,text/plain,.tsv,.csv,.txt">
+							<input type="file" data-number=2 name="expressionData" class="form-control-file" id="expressionData" accept="text/csv,text/tab-separated-values,text/plain,.tsv,.csv,.txt">
 							<div class="buttonFile">Browser</div>
 							<span>Select or drag a file here</span>
 						</div>
@@ -73,7 +66,7 @@
 					<div class="form-group">
 						<label for="phenotypicData">Phenotypic Data</label>
 						<div class="baseFile">
-							<input type="file" name="phenotypicData" class="form-control-file" id="phenotypicData" accept="text/csv,text/tab-separated-values,text/plain,.tsv,.csv,.txt">
+							<input type="file" data-number=2 name="phenotypicData" class="form-control-file" id="phenotypicData" accept="text/csv,text/tab-separated-values,text/plain,.tsv,.csv,.txt">
 							<div class="buttonFile">Browser</div>
 							<span>Select or drag a file here</span>
 						</div>
@@ -83,10 +76,7 @@
 				</form>
 				
 				<!-- FORM WITH OPTION POST PER JS -->
-				<!-- <form enctype="multipart/form-data" id="formData" method="_POST"> -->
-
-				<form enctype="multipart/form-data" id="formData" method="_POST" action="assets/scripts/plot.php">
-
+				<form enctype="multipart/form-data" id="formData" method="POST" action="assets/scripts/plot.php">
 					<input type="hidden" name="exec" value="<?php echo $DIR_RANDOM ?>">
 
 					<div class="form-group bottomSpace">
@@ -133,9 +123,10 @@
 							<option>0.7</option>
 						</select>
 					</div>
-
-					<input type="submit" class="btn btn-primary" value="Create plot">									
-
+					<div id="loading">
+						<img src="assets/images/loading.gif">
+					</div>
+					<input type="submit" class="btn btn-primary upload" value="Create plot" id="creatPlot">						
 				</form>
 			</div>
 
@@ -144,19 +135,14 @@
 	</div>
 	<div class="container">
 		<div class="footer">
-			<p>Developed  and supported by:</p>
-			<img src="assets/images/aa.jpeg" width="90" alt="">
-			<img src="assets/images/chile.jpg" width="90" alt="">
-			<img src="assets/images/usp.png" width="90" alt="">
-			<img src="assets/images/FCF.jpg" width="90" alt="">
-			<img src="assets/images/fapesp.png" width="90" alt="">
-			<img src="assets/images/conicyt.png" width="90" alt="">
+			<?php include "pages/footer.php" ?>
 		</div>
 	</div>	
 </body>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="assets/js/jquery.js"></script>
 	<script src="assets/js/jquery-ui.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 	<script src="assets/js/global.js"></script>

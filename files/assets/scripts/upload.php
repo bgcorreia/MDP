@@ -8,7 +8,7 @@
   $fileSizeMB = 20 ;
 
   if ( !(is_dir($dir_random)) ){
-    mkdir( $dir_random , 0700 );
+    mkdir( $dir_random , 0755 );
   }
 
   // Pasta onde o arquivo vai ser salvo

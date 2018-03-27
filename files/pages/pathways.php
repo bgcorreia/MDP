@@ -103,7 +103,7 @@
 					</div>
 				</form>
 
-				<form enctype="multipart/form-data" id="formData" method="POST" action="/assets/scripts/plot_">
+				<form enctype="multipart/form-data" id="formData" method="POST" action="/assets/scripts/plotPath">
 					<input type="hidden" name="exec" value="<?php echo $DIR_RANDOM ?>">
 
 					<div class="form-group bottom" id="parameters">

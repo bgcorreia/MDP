@@ -61,7 +61,7 @@ if(is.na(args[8])) {
                      text = gsub("\\|", "\n", info))) + 
     geom_bar(stat = "identity") + 
     theme(axis.text.x = element_blank()) + ggtitle("MDP score using all genes") +
-    labs(fill = "Classes", x = 'Samples', y = 'MDP score'))
+    labs(fill = "Classes", x = 'Samples', y = 'Sample scores'))
   htmlwidgets::saveWidget(as_widget(p), paste0(folder, "/plot1.html"))
   p2 <- ggplotly(ggplot(x, aes(x = Condition, y = value, color = Condition,
                      text = gsub("\\|", "\n", info))) + 
@@ -88,7 +88,7 @@ if(is.na(args[8])) {
                         text = gsub("\\|", "\n", info))) + 
       geom_bar(stat = "identity") + 
       theme(axis.text.x = element_blank()) + ggtitle("MDP scores using only perturbed genes") +
-      labs(fill = "Classes", x = 'Samples', y = 'MDP score'))
+      labs(fill = "Classes", x = 'Samples', y = 'Sample scores'))
     htmlwidgets::saveWidget(as_widget(p3), paste0(folder, "/plot3.html"))
     p4 <- ggplotly(ggplot(x2, aes(x = Condition, y = value, color = Condition,
                        text = gsub("\\|", "\n", info))) + 
@@ -132,7 +132,7 @@ if(is.na(args[8])) {
     geom_bar(stat = "identity") + 
     theme(axis.text.x = element_blank()) + 
     ggtitle(paste("MDP score using genes from ",selected_path, " pathway",sep="")) +
-    labs(fill = "Classes", x = 'Samples', y = 'MDP score'))
+    labs(fill = "Classes", x = 'Samples', y = 'Sample scores'))
   htmlwidgets::saveWidget(as_widget(p), paste0(folder, "/plot1.html"))
   p2 <- ggplotly(ggplot(x, aes(x = Condition, y = value, color = Condition,
                      text = gsub("\\|", "\n", info))) + 

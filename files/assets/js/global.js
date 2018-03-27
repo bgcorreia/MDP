@@ -29,8 +29,10 @@ var Upload = {
                         var xhr1 = new window.XMLHttpRequest();
                         xhr1.upload.addEventListener("progress", function(evt1){
                             if(evt1.lengthComputable){
+                                var attach_id = "expressionData";
+                                var size = $('#'+attach_id)[0].files[0].size;
                                 var percentComplete1 = evt1.loaded / size;
-                                progressBar.animate({'width': (percentComplete1 * 100)+'%'});
+                                progressBar.css({'width': (percentComplete1 * 100)+'%'});
                                 console.log(Math.round(percentComplete1 * 100));
 				console.log('Size Expression: ' + (size));
 				console.log('EXPRESSION: ' + (percentComplete1 * 100));
@@ -58,7 +60,7 @@ var Upload = {
                                 var attach_id = "phenotypicData";
                                 var size = $('#'+attach_id)[0].files[0].size;
                                 var percentComplete2 = evt2.loaded / size;
-                                progressBar.animate({'width': (percentComplete2 * 100)+'%'});
+                                progressBar.css({'width': (percentComplete2 * 100)+'%'});
                                 console.log(Math.round(percentComplete2 * 100));
                                 console.log('Size Phenotypic: ' + (size));
 				console.log('PHENOTYPIC: ' + (percentComplete2 * 100));
@@ -83,7 +85,7 @@ var Upload = {
                         xhr3.upload.addEventListener("progress", function(evt3){
                             if(evt3.lengthComputable){
                                 var percentComplete3 = evt3.loaded / evt3.total;
-                                progressBar.animate({'width': (percentComplete3 * 100)+'%'});
+                                progressBar.css({'width': (percentComplete3 * 100)+'%'});
                                 console.log(Math.round(percentComplete3 * 100));
 				console.log('GMT: ' + (percentComplete3 * 100));
                                 console.log('GMT LOADED: ' + (evt3.loaded));

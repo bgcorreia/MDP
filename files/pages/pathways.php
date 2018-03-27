@@ -138,8 +138,8 @@
 							<option>3</option>
 						</select>
 					</div>
-					<select class="form-control" name="average" id="pertubed" style="visibility: hidden;">
-						<option selected>0.05</option>
+					<select class="form-control" name="average" id="pertubed" style="visibility: hidden; height:0;">
+						<option selected>0</option>
 					</select>
 					<div id="loading">
 						<img src="/assets/images/loading.gif">

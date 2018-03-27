@@ -31,8 +31,7 @@
 			</nav>
 
 			<div id="slide">
-				<h1>Plots</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur numquam reiciendis odio accusantium voluptatem minus iste ratione, quod, maxime excepturi debitis dicta sint sed omnis fugit laudantium rem ad non!</p>
+				<h1>Results</h1>
 			</div>
 			<div id="baseButtons">
 				<?php include "../../pages/buttons.php" ?>
@@ -95,7 +94,7 @@
 
 				?>
 
-				<a href="<?php echo $execDir; ?>/MDP_scores.tsv" download><button class="btn btn-primary" style="margin-bottom: 30px;">Download plots</button></a>
+				<a href="<?php echo $execDir; ?>/MDP_scores.tsv" download><button class="btn btn-primary" style="margin-bottom: 30px;">Download result data</button></a>
 
 				<iframe class="iframe" src="<?php echo $execDir; ?>/plot1.html" width="100%" frameborder="none" style="border-radius: 8px 8px 0 0"></iframe>
 				<iframe class="iframe" src="<?php echo $execDir; ?>/plot2.html" width="100%" frameborder="none" style="margin-top:-5px; border-radius:0 0 8px 8px"></iframe>

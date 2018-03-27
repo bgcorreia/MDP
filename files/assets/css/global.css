@@ -177,6 +177,10 @@ form a {
 	margin-right: -12px;
 }
 
+.bg-success {
+	box-shadow: inset 0 0 0 1px rgba(0,0,0,0.2) !important;
+}
+
 .btn-primary {
     background-color: rgb(50,156,208);
     border: 1px solid rgb(50,150,194);

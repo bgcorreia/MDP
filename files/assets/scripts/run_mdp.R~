@@ -61,14 +61,14 @@ if(is.na(args[8])) {
                      text = gsub("\\|", "\n", info))) + 
     geom_bar(stat = "identity") + 
     theme(axis.text.x = element_blank()) + ggtitle("MDP score using all genes") +
-    labs(fill = "Classes", x = 'Samples', y = 'MDP score'))
+    labs(fill = "Coditions", x = 'Samples', y = 'MDP score'))
   htmlwidgets::saveWidget(as_widget(p), paste0(folder, "/plot1.html"))
   p2 <- ggplotly(ggplot(x, aes(x = Condition, y = value, color = Condition,
                      text = gsub("\\|", "\n", info))) + 
     geom_boxplot(alpha=0.4, outlier.shape = NA, outlier.size = 0) +
     geom_jitter(position=position_jitter(0.3)) +
     theme(axis.text.x = element_blank()) +
-    labs(color = "Classes", x = '', y = 'Sample scores'))
+    labs(color = "Coditions", x = '', y = 'MDP scores'))
     htmlwidgets::saveWidget(as_widget(p2), paste0(folder, "/plot2.html"))
     
     x2 = as.data.frame(t(pathways[2,6:ncol(pathways)]))
@@ -88,14 +88,14 @@ if(is.na(args[8])) {
                         text = gsub("\\|", "\n", info))) + 
       geom_bar(stat = "identity") + 
       theme(axis.text.x = element_blank()) + ggtitle("MDP scores using only perturbed genes") +
-      labs(fill = "Classes", x = 'Samples', y = 'MDP score'))
+      labs(fill = "Coditions", x = 'Samples', y = 'MDP score'))
     htmlwidgets::saveWidget(as_widget(p3), paste0(folder, "/plot3.html"))
     p4 <- ggplotly(ggplot(x2, aes(x = Condition, y = value, color = Condition,
                        text = gsub("\\|", "\n", info))) + 
       geom_boxplot(alpha=0.4, outlier.shape = NA, outlier.size = 0) + 
       geom_jitter(position=position_jitter(0.3)) +
       theme(axis.text.x = element_blank()) +
-      labs(color = "Classes", x = '', y = 'Sample scores'))
+      labs(color = "Coditions", x = '', y = 'MDP scores'))
     htmlwidgets::saveWidget(as_widget(p4), paste0(folder, "/plot4.html"))
 } else {
   # load gmt file
@@ -132,13 +132,13 @@ if(is.na(args[8])) {
     geom_bar(stat = "identity") + 
     theme(axis.text.x = element_blank()) + 
     ggtitle(paste("MDP score using genes from ",selected_path, " pathway",sep="")) +
-    labs(fill = "Classes", x = 'Samples', y = 'MDP score'))
+    labs(fill = "Coditions", x = 'Samples', y = 'MDP score'))
   htmlwidgets::saveWidget(as_widget(p), paste0(folder, "/plot1.html"))
   p2 <- ggplotly(ggplot(x, aes(x = Condition, y = value, color = Condition,
                      text = gsub("\\|", "\n", info))) + 
     geom_boxplot(alpha=0.4, outlier.shape = NA, outlier.size = 0) +
     geom_jitter(position=position_jitter(0.3)) +
     theme(axis.text.x = element_blank()) +
-    labs(color = "Classes", x = '', y = 'Sample scores'))
+    labs(color = "Coditions", x = '', y = 'MDP scores'))
   htmlwidgets::saveWidget(as_widget(p2), paste0(folder, "/plot2.html"))
 }

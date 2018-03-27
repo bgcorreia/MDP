@@ -34,7 +34,7 @@
 
 			<div id="slide">
 				<h1>Run (All genes)</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur numquam reiciendis odio accusantium voluptatem minus iste ratione, quod, maxime excepturi debitis dicta sint sed omnis fugit laudantium rem ad non!</p>
+				<p>Calculate sample perturbation scores for all samples. Scores are calculated using control samples as a reference. Two plots are produced, where sample scores are calculated using all genes or the top percentage of perturbed genes.</p>
 			</div>
 			<div id="baseButtons">
 				<?php include "pages/buttons.php" ?>
@@ -69,7 +69,7 @@
 							<div class="buttonFile">Browser</div>
 							<span>Select or drag a file here</span>
 						</div>
-						<small id="dataHelp" class="form-text text-muted"><a href="example/GSE19439_data.tsv"  download>Click here</a> to see a example</small>
+						<small id="dataHelp" class="form-text text-muted"><a href="example/GSE19439_data.tsv"  download>Click here</a> to see an example</small>
 						<div class="progress" data-action="progress" data-prog="1">
 							<div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
@@ -83,7 +83,7 @@
 							<span>Select or drag a file here</span>
 						</div>
 						
-						<small id="dataHelp" class="form-text text-muted"><a href="example/GSE19439_pdata.tsv" download>Click here</a> to see a example</small>
+						<small id="dataHelp" class="form-text text-muted"><a href="example/GSE19439_pdata.tsv" download>Click here</a> to see an example</small>
 						<div class="progress" data-action="progress" data-prog="2">
 							<div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
@@ -95,7 +95,7 @@
 					<input type="hidden" name="exec" value="<?php echo $DIR_RANDOM ?>">
 
 					<div class="form-group bottomSpace" id="parameters">
-						<label for="param">Select the parameter</label>
+						<label for="param">Select the control class</label>
 						<select class="form-control" name="class" id="param">
 							<option>Upload some file in Phenotypic Data</option>
 						</select>
@@ -107,7 +107,7 @@
 					<div class="form-group">
 						<label for="average">Statistics average method</label>
 						<select class="form-control" name="stats" id="average">
-							<option>Median</option>
+							<option selected>Median</option>
 							<option>Mean</option>
 						</select>
 					</div>
@@ -115,7 +115,7 @@
 						<label for="stan">Standart deviation</label>
 						<select class="form-control" name="stan" id="stan">
 							<option>1</option>
-							<option>2</option>
+							<option selected>2</option>
 							<option>3</option>
 						</select>
 					</div>						
@@ -126,7 +126,7 @@
 							<option>0.1</option>
 							<option>0.15</option>
 							<option>0.2</option>
-							<option>0.25</option>
+							<option selected>0.25</option>
 							<option>0.30</option>
 							<option>0.35</option>
 							<option>0.40</option>

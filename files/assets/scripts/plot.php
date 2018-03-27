@@ -32,7 +32,7 @@
 			</nav>
 
 			<div id="slide">
-				<h1>Plots</h1>
+				<h1>Results</h1>
 			</div>
 			<div id="baseButtons">
 				<?php include "../../pages/buttons.php" ?>

@@ -62,10 +62,10 @@ var Upload = {
                                 var percentComplete2 = evt2.loaded / size;
                                 progressBar.css({'width': (percentComplete2 * 100)+'%'});
                                 console.log(Math.round(percentComplete2 * 100));
-                                console.log('Size Phenotypic: ' + (size));
-				console.log('PHENOTYPIC: ' + (percentComplete2 * 100));
-                                console.log('PHENOTYPIC LOADED: ' + (evt2.loaded));
-                                console.log('PHENOTYPIC TOTAL: ' + (evt2.total));
+				console.log('Size Expression: ' + (size));
+				console.log('phenotypicData: ' + (percentComplete2 * 100));
+				console.log('phenotypicData LOADED: ' + (evt2.loaded));
+				console.log('phenotypicData TOTAL: ' + (evt2.total));
                             }
                         }, false);
 			/*

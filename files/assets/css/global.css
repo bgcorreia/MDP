@@ -64,11 +64,16 @@ a:link {
 	line-height: 50px;
 	font-size: 12px;
 	font-weight: bold;
+	text-align: center;
+}
+
+#base #baseButtons span {
+	color: #CCC;
 }
 
 #base #baseButtons .buttonsCreate {
-	margin: 0 10px 0 30px;
-	padding: 0 10px 14px 10px;
+	background-color: transparent;
+	padding: 0 20px 13px 20px;
 	transition: all 0.2s;
 	border-bottom: solid 4px white;
 	color: rgb(126,134,154);
@@ -183,6 +188,7 @@ form a {
 
 .btn-primary {
     background-color: rgb(50,156,208);
+    width: 100%;
     border: 1px solid rgb(50,150,194);
     padding: 10px 20px;
     color: white;

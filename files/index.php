@@ -27,8 +27,8 @@
 				</div>
 
 				<div class="groups">
-					<img src="assets/images/csbl.png" width="90" alt="" style="float: right;">
-					<img src="assets/images/lib.png" width="120" alt="" style="float: right;">					
+					<img src="assets/images/lib.png" width="120" alt="" style="float: right;">	
+					<img src="assets/images/csbl.png" width="90" alt="" style="float: right;">				
 				</div>				
 			</nav>
 
@@ -65,7 +65,7 @@
 					<div class="form-group">
 						<label for="expressionData">Expression Data</label>
 						<div class="baseFile">
-							<input type="file" data-id="1" data-number=1 name="expressionData" class="form-control-file" id="expressionData" accept="text/csv,text/tab-separated-values,text/plain,.tsv,.csv,.txt">
+							<input type="file" data-id="1" data-number=1 name="expressionData" class="form-control-file" id="expressionData" accept="text/csv,text/tab-separated-values,text/plain,.tsv,.csv,.txt" required>
 							<div class="buttonFile">Browser</div>
 							<span>Select or drag a file here</span>
 						</div>
@@ -78,7 +78,7 @@
 					<div class="form-group">
 						<label for="phenotypicData">Phenotypic Data</label>
 						<div class="baseFile">
-							<input type="file" data-id="2" data-number=2 name="phenotypicData" class="form-control-file" id="phenotypicData" accept="text/csv,text/tab-separated-values,text/plain,.tsv,.csv,.txt">
+							<input type="file" data-id="2" data-number=2 name="phenotypicData" class="form-control-file" id="phenotypicData" accept="text/csv,text/tab-separated-values,text/plain,.tsv,.csv,.txt" required>
 							<div class="buttonFile">Browser</div>
 							<span>Select or drag a file here</span>
 						</div>
@@ -141,7 +141,7 @@
 					<div id="loading">
 						<img src="assets/images/loading.gif">
 					</div>
-					<input type="submit" class="btn btn-primary upload" value="Create plot" id="creatPlot">		
+					<input type="submit" class="btn btn-primary upload" value="Run" id="creatPlot">		
 				</form>
 			</div>
 

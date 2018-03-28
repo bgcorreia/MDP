@@ -10,7 +10,7 @@ control <- args[3] #"healthy"
 method <- args[4] #"median"
 std <- as.numeric(args[5]) #2
 perc <- as.numeric(args[6]) #0.25
-folder <- args[7] #"."
+folder <- args[7] #"example_files"
 #args[8] ="cellspecific_modules_extended.gmt"
 #args[9] = "Tcell"
 
@@ -29,21 +29,24 @@ if(is.na(args[8])) {
   # run MDP
   
   mdp.results <- mdp(data = exp, pdata = dataP, control_lab = control, measure = method,
-                     std = std, perc = perc,
+                     std = std, fraction_genes = perc,
                      print = F, save_tables = F)
   
   # pathways results that will be used for web interface
-  pathways <- mdp.results$pathways # to generate sMDP plot, for each pathway
-  path_out <- t(pathways[,c(1,5:ncol(pathways))])
+  pathways <- mdp.results$sample_scores # to generate sMDP plot, for each pathway
+  path_out <- t(pathways[,c(1,3:ncol(pathways))])
   
   pathways_out <- cbind(path_out,rbind(colnames(dataP)[2:ncol(dataP)],
-                                         rep("",ncol(dataP)-1)
-                                         ,as.matrix(dataP[,2:ncol(dataP)])))
+                                        # rep("",ncol(dataP)-1)
+                                         as.matrix(dataP[,2:ncol(dataP)])))
+  
+
   rownames(pathways_out)[1] <- ""
-  write.table(pathways_out , file = paste0(folder,"/MDP_scores.tsv"), sep = "\t", quote = F, col.names = F)
+  write.table(pathways_out , file=paste(folder, "MDP_scores.tsv",sep = "/"), 
+              sep = "\t", quote = F, col.names = F)
   
   infovars <- colnames(dataP)[which(!colnames(dataP) %in% c("Sample", "Class"))]
-  x = as.data.frame(t(pathways[1,6:ncol(pathways)]))
+  x = as.data.frame(t(pathways[1,3:ncol(pathways)]))
   colnames(x) ="value"
   x$Sample = rownames(x)
   x$Condition = dataP$Class
@@ -61,17 +64,17 @@ if(is.na(args[8])) {
                      text = gsub("\\|", "\n", info))) + 
     geom_bar(stat = "identity") + 
     theme(axis.text.x = element_blank()) + ggtitle("MDP score using all genes") +
-    labs(fill = "Classes", x = 'Samples', y = 'Sample scores'))
-  htmlwidgets::saveWidget(as_widget(p), paste0(folder, "/plot1.html"))
+    labs(fill = "Coditions", x = 'Samples', y = 'MDP score'))
+  htmlwidgets::saveWidget(as_widget(p), file=paste(folder, "plot1.html",sep = "/"))
   p2 <- ggplotly(ggplot(x, aes(x = Condition, y = value, color = Condition,
                      text = gsub("\\|", "\n", info))) + 
     geom_boxplot(alpha=0.4, outlier.shape = NA, outlier.size = 0) +
     geom_jitter(position=position_jitter(0.3)) +
     theme(axis.text.x = element_blank()) +
-    labs(color = "Classes", x = '', y = 'Sample scores'))
-    htmlwidgets::saveWidget(as_widget(p2), paste0(folder, "/plot2.html"))
+    labs(color = "Coditions", x = '', y = 'MDP scores'))
+    htmlwidgets::saveWidget(as_widget(p2), file=paste(folder, "/plot2.html",sep = "/"))
     
-    x2 = as.data.frame(t(pathways[2,6:ncol(pathways)]))
+    x2 = as.data.frame(t(pathways[2,3:ncol(pathways)]))
     colnames(x2) ="value"
     x2$Sample = rownames(x2)
     x2$Condition = dataP$Class
@@ -88,15 +91,15 @@ if(is.na(args[8])) {
                         text = gsub("\\|", "\n", info))) + 
       geom_bar(stat = "identity") + 
       theme(axis.text.x = element_blank()) + ggtitle("MDP scores using only perturbed genes") +
-      labs(fill = "Classes", x = 'Samples', y = 'Sample scores'))
-    htmlwidgets::saveWidget(as_widget(p3), paste0(folder, "/plot3.html"))
+      labs(fill = "Coditions", x = 'Samples', y = 'MDP score'))
+    htmlwidgets::saveWidget(as_widget(p3), file=paste(folder, "plot3.html",sep = "/"))
     p4 <- ggplotly(ggplot(x2, aes(x = Condition, y = value, color = Condition,
                        text = gsub("\\|", "\n", info))) + 
       geom_boxplot(alpha=0.4, outlier.shape = NA, outlier.size = 0) + 
       geom_jitter(position=position_jitter(0.3)) +
       theme(axis.text.x = element_blank()) +
-      labs(color = "Classes", x = '', y = 'Sample scores'))
-    htmlwidgets::saveWidget(as_widget(p4), paste0(folder, "/plot4.html"))
+      labs(color = "Coditions", x = '', y = 'MDP scores'))
+    htmlwidgets::saveWidget(as_widget(p4), file=paste(folder, "plot4.html",sep = "/"))
 } else {
   # load gmt file
   cell.pathways <- read_gmt(paste(folder,args[8]
@@ -104,16 +107,16 @@ if(is.na(args[8])) {
   selected_path <- args[9]
   # run MDP with pathways
   mdp.results <- mdp(data = exp, pdata = dataP, control_lab = control, measure = method,
-                     std = std, perc = perc,
+                     std = std, fraction_genes = perc,
                      print = F, save_tables = F, pathways = cell.pathways)
-  pathways <- mdp.results$pathways 
-  path_out <- t(pathways[pathways[,1]==selected_path,c(1,5:ncol(pathways))])
+  pathways <- mdp.results$sample_scores 
+  path_out <- t(pathways[pathways[,1]==selected_path,c(1,3:ncol(pathways))])
   
-  pathways_out <- cbind(path_out,rbind(colnames(dataP)[2:ncol(dataP)],rep("",ncol(dataP)-1)
+  pathways_out <- cbind(path_out,rbind(colnames(dataP)[2:ncol(dataP)]#,rep("",ncol(dataP)-1)
                                         ,as.matrix(dataP[,2:ncol(dataP)])))
   rownames(pathways_out)[1] <- ""
-  write.table(pathways_out , file = paste0(folder,"/MDP_scores.tsv"), sep = "\t", quote = F, col.names = F)
-  x = as.data.frame(t(pathways[pathways[,1]==selected_path,6:ncol(pathways)]))
+  write.table(pathways_out , file = paste(folder, "MDP_scores.tsv",sep = "/"), sep = "\t", quote = F, col.names = F)
+  x = as.data.frame(t(pathways[pathways[,1]==selected_path,3:ncol(pathways)]))
   infovars <- colnames(dataP)[which(!colnames(dataP) %in% c("Sample", "Class"))]
   colnames(x) ="value"
   x$Sample = rownames(x)
@@ -132,13 +135,13 @@ if(is.na(args[8])) {
     geom_bar(stat = "identity") + 
     theme(axis.text.x = element_blank()) + 
     ggtitle(paste("MDP score using genes from ",selected_path, " pathway",sep="")) +
-    labs(fill = "Classes", x = 'Samples', y = 'Sample scores'))
-  htmlwidgets::saveWidget(as_widget(p), paste0(folder, "/plot1.html"))
+    labs(fill = "Coditions", x = 'Samples', y = 'MDP score'))
+  htmlwidgets::saveWidget(as_widget(p), file=paste(folder, "plot1.html",sep = "/"))
   p2 <- ggplotly(ggplot(x, aes(x = Condition, y = value, color = Condition,
                      text = gsub("\\|", "\n", info))) + 
     geom_boxplot(alpha=0.4, outlier.shape = NA, outlier.size = 0) +
     geom_jitter(position=position_jitter(0.3)) +
     theme(axis.text.x = element_blank()) +
-    labs(color = "Classes", x = '', y = 'Sample scores'))
-  htmlwidgets::saveWidget(as_widget(p2), paste0(folder, "/plot2.html"))
+    labs(color = "Coditions", x = '', y = 'MDP scores'))
+  htmlwidgets::saveWidget(as_widget(p2), file=paste(folder, "plot2.html",sep = "/"))
 }

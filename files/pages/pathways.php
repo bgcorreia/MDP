@@ -27,8 +27,8 @@
 				</div>
 
 				<div class="groups">
-					<img src="../assets/images/csbl.png" width="90" alt="" style="float: right;">
-					<img src="../assets/images/lib.png" width="120" alt="" style="float: right;">					
+					<img src="../assets/images/lib.png" width="120" alt="" style="float: right;">	
+					<img src="../assets/images/csbl.png" width="90" alt="" style="float: right;">					
 				</div>				
 			</nav>
 
@@ -144,7 +144,7 @@
 					<div id="loading">
 						<img src="/assets/images/loading.gif">
 					</div>						
-					<input type="submit" id="creatPlot" class="btn btn-primary" value="Create plot">			
+					<input type="submit" id="creatPlot" class="btn btn-primary" value="Run">			
 				</form>
 			</div>
 

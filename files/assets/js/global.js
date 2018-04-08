@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	$('.alert-danger').hide();
 	$("#loading").hide();
-
+	$("#creatPlot").hide();
 	$("#creatPlot").click(function(){
 		$("#loading").fadeIn(1000);
 	});
@@ -15,13 +15,14 @@ var Upload = {
 	lod1: 0,
 	lod2: 0,
 	lod3: 0,
+	showButton: 0,
 	All: function(num){
+		var url_atual = window.location.href;
 		var formData = new FormData($('#formUpload')[0]),
 		num = Upload.num,
 		inputFile = $('[data-prog="'+num+'"]'),
 		progressBar = $('[data-prog="'+num+'"] .progress-bar');
 		if(Upload.one == 0 && num == 1 || Upload.two == 0 && num == 2 || Upload.three == 0 && num == 3){
-			var loadedOne, loadedTwo, loadedThree;
 			$.ajax({
 				type: 'POST',
 				url: '/assets/scripts/upload.php',
@@ -106,6 +107,9 @@ var Upload = {
 					progressBar.addClass('bg-success');
 					progressBar.html("Upload Complete");
 					progressBar.removeClass('progress-bar-animated');
+					if(num == 1){
+						Upload.showButton =Upload. showButton + 1;
+					}
 					if(num == 2){
 						if (data.error) {
 							$('.alert-danger').html("<i class='fas fa-exclamation-circle'></i> "+data.error);
@@ -118,10 +122,14 @@ var Upload = {
 							$('.alert-danger').fadeOut(200);
 							if ( $("#phenotypicData").val() ) {
 								$("#param").html("");
+								Upload.showButton = Upload.showButton + 1;
 								$.each(data.classes1, function() {
 									$("#param").append("<option>"+this+"</option>");
 								});
 							}
+						}
+						if(url_atual == "http://mdp.sysbio.tools/"  && Upload.showButton == 2){
+							$("#creatPlot").fadeIn(500);
 						}
 					} else if(num == 3){
 						if (data.error) {
@@ -138,8 +146,12 @@ var Upload = {
 								$.each(data.classes2, function() {
 									$("#param2").append("<option>"+this+"</option>");
 								});
+								Upload.showButton = Upload.showButton + 1;
 							}
-						} 
+						}
+						if(url_atual == "http://mdp.sysbio.tools/pages/pathways" && Upload.showButton == 3){
+							$("#creatPlot").fadeIn(500);
+						}
 					}
 				}
 			});

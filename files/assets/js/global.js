@@ -1,9 +1,10 @@
 $(document).ready(function(){
 	$('.alert-danger').hide();
 	$("#loading").hide();
-    $("#creatPlot").click(function(){
-        $("#loading").fadeIn(1000);
-    });
+
+	$("#creatPlot").click(function(){
+		$("#loading").fadeIn(1000);
+	});
 });
 
 var Upload = {
@@ -11,100 +12,83 @@ var Upload = {
 	two: 0,
 	three: 0,
 	num: 0,
+	lod1: 0,
+	lod2: 0,
+	lod3: 0,
 	All: function(num){
 		var formData = new FormData($('#formUpload')[0]),
 		num = Upload.num,
 		inputFile = $('[data-prog="'+num+'"]'),
 		progressBar = $('[data-prog="'+num+'"] .progress-bar');
 		if(Upload.one == 0 && num == 1 || Upload.two == 0 && num == 2 || Upload.three == 0 && num == 3){
+			var loadedOne, loadedTwo, loadedThree;
 			$.ajax({
 				type: 'POST',
 				url: '/assets/scripts/upload.php',
 				processData: false,
 				contentType: false,
 				data: formData,
-				cache: false,
 				xhr: function(){
-		if(num == 1){
-                        var xhr1 = new window.XMLHttpRequest();
-                        xhr1.upload.addEventListener("progress", function(evt1){
-                            if(evt1.lengthComputable){
-                                var attach_id = "expressionData";
-                                var size = $('#'+attach_id)[0].files[0].size;
-                                var percentComplete1 = evt1.loaded / size;
-                                progressBar.css({'width': (percentComplete1 * 100)+'%'});
-                                console.log(Math.round(percentComplete1 * 100));
-				console.log('Size Expression: ' + (size));
-				console.log('EXPRESSION: ' + (percentComplete1 * 100));
-				console.log('EXPRESSION LOADED: ' + (evt1.loaded));
-				console.log('EXPRESSION TOTAL: ' + (evt1.total));
-                            }
-                        }, false);
+					xhr = new window.XMLHttpRequest();
 
-			/*
-                        xhr1.addEventListener("progress", function(evt1){
-                            if(evt1.lengthComputable){
-                                var percentComplete1 = evt1.loaded / evt1.total;
-                                progressBar.animate({'width': Math.round(percentComplete1 * 100)+'%'});
-                                console.log(percentComplete1);
-                            }
-                        }, false);
-			*/
+					if(num == 1){
+						xhr.upload.addEventListener("progress", function(evt1){
+							if(evt1.lengthComputable){
+								var attach_id = "expressionData";
+								var size = $('#'+attach_id)[0].files[0].size;
+								var percentComplete1 = evt1.loaded / size;
 
-                        return xhr1;
+								progressBar.animate({'width': (percentComplete1 * 100)+'%'});
+								Upload.lod1 = size; 
 
-                    }else if(num == 2){
-                        var xhr2 = new window.XMLHttpRequest();
-                        xhr2.upload.addEventListener("progress", function(evt2){
-                            if(evt2.lengthComputable){
-                                var attach_id = "phenotypicData";
-                                var size = $('#'+attach_id)[0].files[0].size;
-                                var percentComplete2 = evt2.loaded / size;
-                                progressBar.css({'width': (percentComplete2 * 100)+'%'});
-                                console.log(Math.round(percentComplete2 * 100));
-				console.log('Size Expression: ' + (size));
-				console.log('phenotypicData: ' + (percentComplete2 * 100));
-				console.log('phenotypicData LOADED: ' + (evt2.loaded));
-				console.log('phenotypicData TOTAL: ' + (evt2.total));
-                            }
-                        }, false);
-			/*
-                        xhr2.addEventListener("progress", function(evt2){
-                            if(evt2.lengthComputable){
-                                var percentComplete2 = evt2.loaded / evt2.total;
-                                progressBar.animate({'width': Math.round(percentComplete2 * 100)+'%'});
-                                console.log(percentComplete2);
-                            }
-                        }, false);
-			*/
+								console.log(Math.round(percentComplete1 * 100));
+								console.log('EXPRESSION SIZE: ' + (size));
+								console.log('EXPRESSION PERCENT: ' + (percentComplete1 * 100));
+								console.log('EXPRESSION LOADED: ' + (evt1.loaded));
+							}
+						}, false);
 
-                        return xhr2;
+						return xhr;
 
-                    }else if(num == 3){
-                        var xhr3 = new window.XMLHttpRequest();
-                        xhr3.upload.addEventListener("progress", function(evt3){
-                            if(evt3.lengthComputable){
-                                var percentComplete3 = evt3.loaded / evt3.total;
-                                progressBar.css({'width': (percentComplete3 * 100)+'%'});
-                                console.log(Math.round(percentComplete3 * 100));
-				console.log('GMT: ' + (percentComplete3 * 100));
-                                console.log('GMT LOADED: ' + (evt3.loaded));
-                                console.log('GMT TOTAL: ' + (evt3.total));
-                            }
-                        }, false);
-			/*
-                        xhr3.addEventListener("progress", function(evt3){
-                            if(evt3.lengthComputable){
-                                var percentComplete3 = evt3.loaded / evt3.total;
-                                progressBar.animate({'width': Math.round(percentComplete3 * 100)+'%'});
-                                console.log(percentComplete3);
-                            }
-                        }, false);
-			*/
+					}else if(num == 2){
+						xhr.upload.addEventListener("progress", function(evt2){
+							Upload.lod2 = evt2.loaded - Upload.lod1;
+							if(evt2.lengthComputable){
+								var attach_id = "phenotypicData";
+								var size = $('#'+attach_id)[0].files[0].size;
+								var percentComplete2 = Upload.lod2 / size;
 
-                        return xhr3;
-                    }
-					
+								progressBar.animate({'width': (percentComplete2 * 100)+'%'});
+
+								console.log(Math.round(percentComplete2 * 100));
+								console.log('Size Expression: ' + (size));
+								console.log('phenotypicData: ' + (percentComplete2 * 100));
+								console.log('phenotypicData LOADED: ' + (Upload.lod2));
+							}
+						}, false); 
+
+						return xhr;
+
+					}else if(num == 3){
+						xhr.upload.addEventListener("progress", function(evt3){
+							if(evt3.lengthComputable){
+								var attach_id = "pathwaysGMT";
+								var size = $('#'+attach_id)[0].files[0].size;
+								Upload.lod3 = evt3.loaded - $('#expressionData')[0].files[0].size;
+								var percentComplete3 = Upload.lod3 / size;
+
+								progressBar.animate({'width': (percentComplete3 * 100)+'%'});
+
+								console.log(Math.round(percentComplete3 * 100));
+								console.log('Size Expression: ' + (size));
+								console.log('GMT: ' + (percentComplete3 * 100));
+								console.log('GMT LOADED: ' + (Upload.lod3));
+								console.log('GMT TOTAL: ' + (evt3.total));
+							}
+						}, false);
+
+						return xhr;
+					}
 				},
 				beforeSend: function(){
 					inputFile.fadeIn(0);
@@ -166,6 +150,7 @@ $('#formUpload').submit(function(){
 	Upload.All();
 	return false;
 });
+
 $('input[type=file]').change(function(){
 	var a = $(this),
 		b = a.val(),

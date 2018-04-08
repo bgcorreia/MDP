@@ -112,31 +112,14 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<label for="stan">Standart deviation</label>
-						<select class="form-control" name="stan" id="stan">
-							<option>1</option>
-							<option selected>2</option>
-							<option>3</option>
-						</select>
+						<label for="stan">Standart deviation <h6 style="position: absolute; margin-left: 138px; margin-top: -20px;"><span class="badge badge-primary" id="stanVal">2</span></h6></label>
+
+						<input type="range" name="stan" id="stan" value="2" min="1" max="3">
 					</div>						
 					<div class="form-group">
-						<label for="pertubed">Top perturbed genes (<i class="fa fa-percent" aria-hidden="true"></i>)</label>
-						<select class="form-control" name="average" id="pertubed">
-							<option>0.05</option>
-							<option>0.1</option>
-							<option>0.15</option>
-							<option>0.2</option>
-							<option selected>0.25</option>
-							<option>0.30</option>
-							<option>0.35</option>
-							<option>0.40</option>
-							<option>0.45</option>
-							<option>0.50</option>						
-							<option>0.55</option>
-							<option>0.6</option>
-							<option>0.65</option>
-							<option>0.7</option>
-						</select>
+						<label for="pertubed">Top perturbed genes (<i class="fa fa-percent" aria-hidden="true"></i>) <h6 style="position: absolute; margin-left: 170px; margin-top: -20px;"><span class="badge badge-primary" id="pertubedVal">0.25</span></h6></label>
+
+						<input type="range" name="average" id="pertubed" value="0.25" min="0.05" max="0.7" step="0.05">
 					</div>
 					<div id="loading">
 						<img src="assets/images/loading.gif">

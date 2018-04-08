@@ -7,6 +7,14 @@ $(document).ready(function(){
 	});
 });
 
+$(document).on('input', '#stan', function() {
+	$('#stanVal').html( $(this).val() );
+});
+
+$(document).on('input', '#pertubed', function() {
+	$('#pertubedVal').html( $(this).val() );
+});
+
 var Upload = {
 	one: 0,
 	two: 0,

@@ -57,14 +57,14 @@ var Upload = {
 							if(evt2.lengthComputable){
 								var attach_id = "phenotypicData";
 								var size = $('#'+attach_id)[0].files[0].size;
-								var percentComplete2 = Upload.lod2 / size;
+								var percentComplete2 = Math.abs(Upload.lod2 / size);
 
 								progressBar.animate({'width': (percentComplete2 * 100)+'%'});
 
 								console.log(Math.round(percentComplete2 * 100));
 								console.log('Size Expression: ' + (size));
 								console.log('phenotypicData: ' + (percentComplete2 * 100));
-								console.log('phenotypicData LOADED: ' + (Upload.lod2));
+								console.log('phenotypicData LOADED: ' + ( Math.abs(Upload.lod2)));
 							}
 						}, false); 
 
@@ -76,14 +76,14 @@ var Upload = {
 								var attach_id = "pathwaysGMT";
 								var size = $('#'+attach_id)[0].files[0].size;
 								Upload.lod3 = evt3.loaded - $('#expressionData')[0].files[0].size;
-								var percentComplete3 = Upload.lod3 / size;
+								var percentComplete3 = Math.abs(Upload.lod3 / size);
 
 								progressBar.animate({'width': (percentComplete3 * 100)+'%'});
 
 								console.log(Math.round(percentComplete3 * 100));
 								console.log('Size Expression: ' + (size));
 								console.log('GMT: ' + (percentComplete3 * 100));
-								console.log('GMT LOADED: ' + (Upload.lod3));
+								console.log('GMT LOADED: ' + (Math.abs(Upload.lod3)));
 								console.log('GMT TOTAL: ' + (evt3.total));
 							}
 						}, false);

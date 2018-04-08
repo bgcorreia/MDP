@@ -26,6 +26,7 @@ var Upload = {
 	showButton: 0,
 	All: function(num){
 		var url_atual = window.location.href;
+		var url_site = "http://localhost/"
 		var formData = new FormData($('#formUpload')[0]),
 		num = Upload.num,
 		inputFile = $('[data-prog="'+num+'"]'),
@@ -66,6 +67,9 @@ var Upload = {
 								var attach_id = "phenotypicData";
 								var size = $('#'+attach_id)[0].files[0].size;
 								var percentComplete2 = Math.abs(Upload.lod2 / size);
+								if(percentComplete2 > 5000){
+									percentComplete2 = 0;
+								}
 
 								progressBar.animate({'width': (percentComplete2 * 100)+'%'});
 
@@ -85,6 +89,9 @@ var Upload = {
 								var size = $('#'+attach_id)[0].files[0].size;
 								Upload.lod3 = evt3.loaded - $('#expressionData')[0].files[0].size;
 								var percentComplete3 = Math.abs(Upload.lod3 / size);
+								if(percentComplete3> 5000){
+									percentComplete3= 0;
+								}
 
 								progressBar.animate({'width': (percentComplete3 * 100)+'%'});
 
@@ -136,7 +143,7 @@ var Upload = {
 								});
 							}
 						}
-						if(url_atual == "http://mdp.sysbio.tools/"  && Upload.showButton == 2){
+						if(url_atual == url_site  && Upload.showButton == 2){
 							$("#creatPlot").fadeIn(500);
 						}
 					} else if(num == 3){
@@ -157,7 +164,7 @@ var Upload = {
 								Upload.showButton = Upload.showButton + 1;
 							}
 						}
-						if(url_atual == "http://mdp.sysbio.tools/pages/pathways" && Upload.showButton == 3){
+						if(url_atual == url_site+"pages/pathways" && Upload.showButton == 3){
 							$("#creatPlot").fadeIn(500);
 						}
 					}

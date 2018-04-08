@@ -135,7 +135,7 @@
 
 						<input type="range" name="stan" id="stan" value="2" min="1" max="3">
 					</div>						
-					<select class="form-control" name="average" id="pertubed" style="visibility: hidden; height:0;">
+					<select class="form-control" name="average" id="pertubed" style="visibility: hidden; height:0; position: absolute;top: 0;">
 						<option selected>0</option>
 					</select>
 					<div id="loading">

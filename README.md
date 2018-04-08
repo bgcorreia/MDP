@@ -7,4 +7,8 @@
 
 - It is responsible for hiding the file extension. For example: instead of being **mdp.com/index.php** it will be **mdp.com/index**.
 
-- In the **`global.js`** file change the **`url_site`** variable to the site where your tool is hosted
+- In the **`global.js`** file change ``mysite`` to the url the tool is hosted on
+
+```js
+var url_site = "http://mysite/";
+```

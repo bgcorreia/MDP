@@ -12,3 +12,6 @@ RUN apt-get update \
     && apt-get install -y r-base-core pandoc \
     libcurl4-openssl-dev libssl-dev \
     && Rscript /install_mdp.R
+
+# ZIP
+RUN docker-php-ext-install zip

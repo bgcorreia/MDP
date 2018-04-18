@@ -65,7 +65,7 @@
 					<div class="form-group">
 						<label for="expressionData">Expression Data</label>
 						<div class="baseFile">
-							<input type="file" data-id="1" data-number=1 name="expressionData" class="form-control-file" id="expressionData" accept="text/csv,text/tab-separated-values,text/plain,.tsv,.csv,.txt" required>
+							<input type="file" data-id="1" data-number=1 name="expressionData" class="form-control-file" id="expressionData" accept="text/csv,text/tab-separated-values,text/plain,.tsv,.csv,.txt,.zip" required>
 							<div class="buttonFile">Browser</div>
 							<span>Select or drag a file here</span>
 						</div>
@@ -96,7 +96,7 @@
 
 					<div class="form-group bottomSpace" id="parameters">
 						<label for="param">Select the control class</label>
-						<select class="form-control" name="class" id="param">
+						<select class="form-control" name="classes1" id="param">
 							<option>Upload some file in Phenotypic Data</option>
 						</select>
 					</div>

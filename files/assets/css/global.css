@@ -419,6 +419,11 @@ h6 {
 	padding: none;
 }
 
+.badge-primary {
+	background-color:  #329CD0;
+	border:  1px solid #287da6;
+}
+
 @media (max-width:991px) {
 	.btn-outline-primary {
 		width: 100%;

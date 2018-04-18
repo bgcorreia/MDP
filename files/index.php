@@ -75,7 +75,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group" id="phenotypicData">
 						<label for="phenotypicData">Phenotypic Data</label>
 						<div class="baseFile">
 							<input type="file" data-id="2" data-number=2 name="phenotypicData" class="form-control-file" id="phenotypicData" accept="text/csv,text/tab-separated-values,text/plain,.tsv,.csv,.txt" required>

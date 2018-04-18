@@ -44,39 +44,41 @@ var Upload = {
 					if(num == 1){
 						xhr.upload.addEventListener("progress", function(evt1){
 							if(evt1.lengthComputable){
-								var attach_id = "expressionData";
-								var size = $('#'+attach_id)[0].files[0].size;
-								var percentComplete1 = evt1.loaded / size;
+								var percentComplete1 = evt1.loaded / evt1.total;
 
 								progressBar.animate({'width': (percentComplete1 * 100)+'%'});
-								Upload.lod1 = size; 
 
 								console.log(Math.round(percentComplete1 * 100));
-								console.log('EXPRESSION SIZE: ' + (size));
+								console.log('EXPRESSION SIZE: ' + (evt1.total));
 								console.log('EXPRESSION PERCENT: ' + (percentComplete1 * 100));
 								console.log('EXPRESSION LOADED: ' + (evt1.loaded));
+
+
+								if(percentComplete1 >= 1){
+									evt1.total = 0;
+									evt1.loaded = 0;
+									console.log(evt1.total);
+									console.log(evt1.loaded);
+									console.log(xhr.responseText);
+								}
 							}
-						}, false);
+
+		
+						}, true);
 
 						return xhr;
 
 					}else if(num == 2){
 						xhr.upload.addEventListener("progress", function(evt2){
-							Upload.lod2 = evt2.loaded - Upload.lod1;
 							if(evt2.lengthComputable){
-								var attach_id = "phenotypicData";
-								var size = $('#'+attach_id)[0].files[0].size;
-								var percentComplete2 = Math.abs(Upload.lod2 / size);
-								if(percentComplete2 > 5000){
-									percentComplete2 = 0;
-								}
+								var percentComplete2 = evt2.loaded/evt2.total;
 
 								progressBar.animate({'width': (percentComplete2 * 100)+'%'});
 
 								console.log(Math.round(percentComplete2 * 100));
-								console.log('Size Expression: ' + (size));
+								console.log('Size Expression: ' + (evt2.total));
 								console.log('phenotypicData: ' + (percentComplete2 * 100));
-								console.log('phenotypicData LOADED: ' + ( Math.abs(Upload.lod2)));
+								console.log('phenotypicData LOADED: ' + (evt2.loaded));
 							}
 						}, false); 
 

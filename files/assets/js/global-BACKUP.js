@@ -26,7 +26,7 @@ var Upload = {
 	showButton: 0,
 	All: function(num){
 		var url_atual = window.location.href;
-		var url_site = "http://localhost/"
+		var url_site = "http://mdp.sysbio.tools/"
 		var formData = new FormData($('#formUpload')[0]),
 		num = Upload.num,
 		inputFile = $('[data-prog="'+num+'"]'),

@@ -3,7 +3,9 @@ header('Content-type: text/json');
 
 $json = array();
 
-$dir_random = '../../data/' . $_REQUEST['exec']; 
+$louco = md5(date('Y-m-d H:i:s.') . gettimeofday()['usec']) ;
+
+$dir_random = '../../data/' . $louco; 
 
 // Tamanho do arquivo para upload em MB
 $fileSizeMB = 20 ;
@@ -62,8 +64,6 @@ class mdpActions{
 
   function moveArquivo($tipo, $extensao, $origem, $dirDestino) {
 
-    $jsonClass = array();
-
     switch ($tipo) {
 
       case "expression":
@@ -94,7 +94,7 @@ class mdpActions{
 
           $destino = $dirDestino . $nome_final;
 
-          if (move_uploaded_file($origem, $destino)){
+          if (copy($origem, $destino)){
 
             if ($tipo == "phenotypic" or $tipo == "gmt") {
 
@@ -150,7 +150,11 @@ class mdpActions{
 
                 }
 
-                echo json_encode($jsonClass);  
+                //echo json_encode($jsonClass);
+
+                //var_dump($jsonClass);
+
+                //print_r($jsonClass);
 
               }
 
@@ -159,13 +163,13 @@ class mdpActions{
           } else {
 
             // Não foi possível fazer o upload, provavelmente a pasta está incorreta
-            $json['error'] = "Couldn't send file, please, try again";
+            $json['error'] = "ENTROU NO ELSE DO SW EXTENSAO - NAO CONSEGUIU MOVER O ARQUIVO";
             echo json_encode($json);
             exit; // Para a execução do script
 
           }
 
-          //echo json_encode($jsonClass);
+          echo json_encode($jsonClass);
 
         break;
 
@@ -174,7 +178,7 @@ class mdpActions{
           $destino = $dirDestino . $nome_final_zip;
 
           // Verifica se é possível mover o arquivo para a pasta escolhida
-          if (move_uploaded_file($origem, $destino)){
+          if (copy($origem, $destino)){
             
             // Upload efetuado com sucesso
 
@@ -268,7 +272,7 @@ $run = new mdpActions();
 
 /*
 EXPRESSIONDATA UPLOAD
-*/
+
 if ( $_FILES['expressionData']['size'] != 0 ) {
 
   $tipo = "expression";
@@ -287,20 +291,18 @@ if ( $_FILES['expressionData']['size'] != 0 ) {
   $run->moveArquivo($tipo, $extensao, $_FILES['expressionData']['tmp_name'], $_UP['pasta']);
 
 }
+*/
   
+$_FILES['phenotypicData']['name'] = "GSE19439_pdata.tsv";
+
+$_FILES['phenotypicData']['size'] = 10;
+
+$_FILES['phenotypicData']['tmp_name'] = "/home/brunoc/GSE19439_pdata.tsv";
+
 /*
 PHENOTYPICDATA UPLOAD
 */
-if ( $_FILES['phenotypicData']['size'] != 0 ) {
-
   $tipo = "phenotypic";
-
-  // Verifica se houve algum erro com o upload. Se sim, exibe a mensagem do erro
-  if ($_FILES['phenotypicData']['error'] != 0) {
-    $json['error'] = "Couldn't complete file upload because: " . $_UP['erros'][$_FILES['phenotypicData']['error']];
-    echo json_encode($json);
-    exit; // Para a execução do script
-  }
 
   $extensao = $run->verificaExtensao($_FILES['phenotypicData']['name'],$_UP['extensoes']);
 
@@ -308,11 +310,10 @@ if ( $_FILES['phenotypicData']['size'] != 0 ) {
 
   $run->moveArquivo($tipo, $extensao, $_FILES['phenotypicData']['tmp_name'], $_UP['pasta']);
 
-}
 
 /*
 PATHWAYS GMT FILE UPLOAD
-*/
+
 if ( $_FILES['pathwaysGMT']['size'] != 0 ) {
 
   $tipo = "gmt";
@@ -331,5 +332,6 @@ if ( $_FILES['pathwaysGMT']['size'] != 0 ) {
   $run->moveArquivo($tipo, $extensao, $_FILES['pathwaysGMT']['tmp_name'], $_UP['pasta']);
 
 }
+*/
 
 ?>

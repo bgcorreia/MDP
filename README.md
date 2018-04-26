@@ -15,8 +15,8 @@ var url_site = "http://mysite/";
 
 #### TODO
 
-* [ ] Automatic pull (separed repository front/back files)
-* [ ] Automatic backup database
+* [ ] Separed repository front/back files
+* [ ] Automatic pull
 
 ## Containers
 
@@ -28,6 +28,9 @@ var url_site = "http://mysite/";
 ## Infrastructure
 
 ![Infrastructure Pipa](build/images/infra-mdp.jpeg)
+
+# * 
+Environment and maintenance of SSL certificates, in the following repository [Reverse Provy Apps](https://gitlab.com/integrativebioinformatics/reverse_proxy_apps) .
 
 ## Requisites
 

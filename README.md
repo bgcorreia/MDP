@@ -27,7 +27,7 @@ var url_site = "http://mysite/";
 
 ## Infrastructure
 
-![Infrastructure Pipa](build/images/infra-mdp.png)
+![Infrastructure Pipa](build/images/infra-mdp.jpeg)
 
 ## Requisites
 

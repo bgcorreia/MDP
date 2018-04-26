@@ -60,7 +60,7 @@ user@host:~/mdp# docker-compose up -d
 ```
 The option `-d` execute containers in background.
 
-OBS.: For scalability reasons, this project was designed to receive requests from a proxy, so port 80 is not exposed. If you need to run the environment locally (exposed port 80), the command is as follows:
+**OBS.:** For scalability reasons, this project was designed to receive requests from a proxy, so port 80 is not exposed. If you need to run the environment locally (exposed port 80), the command is as follows:
 
 ```bash
 user@host:~/mdp# docker-compose -f docker-compose-local.yml up -d

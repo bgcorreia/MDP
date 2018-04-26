@@ -30,7 +30,7 @@ var url_site = "http://mysite/";
 ![Infrastructure Pipa](build/images/infra-mdp.jpeg)
 
 # * 
-Environment and maintenance of SSL certificates, in the following repository [Reverse Provy Apps](https://gitlab.com/integrativebioinformatics/reverse_proxy_apps) .
+This cloud represents the proxy environment and maintenance of SSL certificates that handles requests and forwards them to the project. This environment is present in the following repository: [Reverse Provy Apps](https://gitlab.com/integrativebioinformatics/reverse_proxy_apps) .
 
 ## Requisites
 

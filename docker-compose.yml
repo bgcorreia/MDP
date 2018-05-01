@@ -4,10 +4,17 @@ services:
 
     nginx_mdp:
         build: ./build/nginx
+<<<<<<< HEAD
         container_name: mdp_webserver
         restart: always
         volumes:
             - ./volumes/frontend:/var/www/html
+=======
+        container_name: mdp_nginx
+        restart: always
+        volumes:
+            - ./volumes/files:/var/www/html
+>>>>>>> 07bc9ef8776afc4b30a5ea3dab4e6b6bb7ff1f9d
         depends_on:
              - php_mdp
         networks:
@@ -19,7 +26,11 @@ services:
         container_name: mdp_php
         restart: always
         volumes:
+<<<<<<< HEAD
             - ./volumes/frontend:/var/www/html
+=======
+            - ./volumes/files:/var/www/html
+>>>>>>> 07bc9ef8776afc4b30a5ea3dab4e6b6bb7ff1f9d
         networks:
              - php
 
